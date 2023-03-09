@@ -1,9 +1,6 @@
-import React from 'react'
+import styled from "styled-components";
 
-const Container = () => {
-  return (
-    <div>Container</div>
-  )
-}
-
-export default Container
+export const Container = styled.div`
+  width: 100%;
+  padding: 0rem 12rem;
+`;

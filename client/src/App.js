@@ -10,6 +10,7 @@ import ErrorPage from "./ErrorPage";
 import { GlobalStyle } from "./Globalstyle";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   const theme = {
@@ -19,7 +20,6 @@ function App() {
       white: "#fff",
       black: " #212529",
       helper: "#8490ff",
-
       bg: "#F6F8FA",
       footer_bg: "#0a1435",
       btn: "rgb(98 84 243)",
@@ -50,6 +50,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
+        <Footer/>
       </Router>
     </ThemeProvider>
   );

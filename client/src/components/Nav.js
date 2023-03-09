@@ -144,7 +144,7 @@ const Nav = () => {
         <div className={menuIcon ? "navbar active" : "navbar"}>
           <ul className="navbar-lists">
             <li>
-              <NavLink
+              <NavLink 
                 to="/"
                 className="navbar-link "
                 onClick={() => setMenuIcon(false)}>
