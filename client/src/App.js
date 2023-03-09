@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./About";
 import "./App.css";
-import Home from "./Home";
-import Product from "./Product";
-import SingleProduct from "./SingleProduct";
-import Contact from "./Contact";
-import Cart from "./Cart";
-import ErrorPage from "./ErrorPage";
+import Home from "./pages/Home";
+import Product from "./pages/Product";
+import SingleProduct from "./pages/SingleProduct";
+import Contact from "./pages/Contact";
+import Cart from "./pages/Cart";
+import ErrorPage from "./pages/ErrorPage";
 import { GlobalStyle } from "./Globalstyle";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
