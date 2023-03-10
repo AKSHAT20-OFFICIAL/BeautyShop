@@ -1,11 +1,51 @@
-import React from 'react'
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import { useProductContext } from "../context/Productcontext";
+import Pagenavigation from "../components/Pagenavigation";
+import { MdSecurity } from "react-icons/md";
+import { TbTruckDelivery, TbReplace } from "react-icons/tb";
+// import Star from "./components/Star";
+const API = "https://api.pujakaitem.com/api/products";
 
 const SingleProduct = () => {
+  const { getSingleProduct, isSingleLoading, singleProduct } =
+    useProductContext();
+
+  const { id } = useParams();
+
+  const {
+    id: alias,
+    name,
+    company,
+    price,
+    description,
+    category,
+    stock,
+    stars,
+    reviews,
+    image,
+  } = singleProduct;
+
+  useEffect(() => {
+    getSingleProduct(`${API}?id=${id}`);
+  }, []);
+
+  if(isSingleLoading){
+    <div className="page_loading">Loading.......</div>
+  }
+
   return (
-    <div>SingleProduct</div>
-  )
-}
+    <Wrapper>
+      <Pagenavigation title={name}/>
+      <div className="container">
+        <div className="product-data">
+          <div className="product-warranty"></div>
+        </div>
+      </div>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.section`
   .container {
@@ -72,4 +112,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default SingleProduct
+export default SingleProduct;
