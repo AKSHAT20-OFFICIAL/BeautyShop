@@ -1,33 +1,31 @@
-import React from 'react'
 import styled from "styled-components";
-import {NavLink} from "react-router-dom"
-import FormatPrice from '../Helpers/FormatPrice';
+import FilterSection from "../components/FilterSection";
+import ProductList from "../components/ProducList"
+import Sort from "../components/Sort";
+import { useFilterContext } from "../context/filter_context";
 
-const Product = (curElem) => {
-  const {id,name,image,price,category} = curElem;
+
+const Product = () => {
+  const {filter_products} = useFilterContext()
+  console.log(filter_products)
   return (
     <Wrapper>
-      <NavLink to={`/item/${id}`}>
-        <div className='card'>
-          <figure>
-            <img src={image} alt={name}/>
-            <figcaption className='caption'>{category}</figcaption>
-          </figure>
-          <div className="card-data">
-            <div className="card-data-flex">
-              <h3>{name}</h3>
-              <p className="card-data--price">{<FormatPrice price={price}/>}</p>
+        <div className="container grid grid-filter-column">
+            <div>
+                <FilterSection/>
             </div>
-          </div>
+            <section className="product-view--sort">
+                <div className="sort-filter">
+                    <Sort/>
+                </div>
+                <div className="main-product">
+                    <ProductList/>
+                </div>
+            </section>
         </div>
-      </NavLink>
-      
     </Wrapper>
   )
 }
-
-
-
 
 const Wrapper = styled.section`
   .grid-filter-column {
@@ -39,5 +37,6 @@ const Wrapper = styled.section`
     }
   }
 `;
+
 
 export default Product

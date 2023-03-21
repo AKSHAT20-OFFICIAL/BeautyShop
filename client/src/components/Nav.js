@@ -161,7 +161,7 @@ const Nav = () => {
             </li>
             <li>
               <NavLink
-                to="/products"
+                to="/product"
                 className="navbar-link "
                 onClick={() => setMenuIcon(false)}>
                 Products
