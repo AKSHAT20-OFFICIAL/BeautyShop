@@ -1,28 +1,32 @@
-import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { FaCheck } from "react-icons/fa";
-// import CartAmountToggle from "./CartAmountToggle";
+import CartAmountToggle from "./CartAmountToggle";
 import { NavLink } from "react-router-dom";
 import { Button } from "../styles/Button";
-import CartAmountToggle from "./CartAmountToggle";
+import { useCartContext } from "../context/cart_context";
 
 const AddToCart = ({ product }) => {
+  const { addToCart } = useCartContext();
+
   const { id, colors, stock } = product;
+
   const [color, setColor] = useState(colors[0]);
-  const [amount,setAmount] =useState(1);
-  const setDecrease =()=>{
-   amount>1 ? setAmount(amount-1) : setAmount(1)
+  const [amount, setAmount] = useState(1);
+
+  const setDecrease = () => {
+    amount > 1 ? setAmount(amount - 1) : setAmount(1);
   };
-  const setIncrease =()=>{
-    amount < stock  ? setAmount(amount+1) : setAmount(stock)
+
+  const setIncrease = () => {
+    amount < stock ? setAmount(amount + 1) : setAmount(stock);
   };
 
   return (
     <Wrapper>
       <div className="colors">
         <p>
-          Colors:
+          Color:
           {colors.map((curColor, index) => {
             return (
               <button
@@ -36,12 +40,15 @@ const AddToCart = ({ product }) => {
           })}
         </p>
       </div>
+
+      {/* add to cart  */}
       <CartAmountToggle
         amount={amount}
         setDecrease={setDecrease}
         setIncrease={setIncrease}
       />
-      <NavLink to="/cart">
+
+      <NavLink to="/cart" onClick={() => addToCart(id, color, amount, product)}>
         <Button className="btn">Add To Cart</Button>
       </NavLink>
     </Wrapper>
@@ -88,16 +95,10 @@ const Wrapper = styled.section`
       background-color: #fff;
       cursor: pointer;
     }
-    button {
-        border: none;
-        background-color: #fff;
-        cursor: pointer;
-      }
     .amount-style {
       font-size: 2.4rem;
       color: ${({ theme }) => theme.colors.btn};
     }
   }
 `;
-
 export default AddToCart;
